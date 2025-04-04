@@ -6,14 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git  # Replace with your repo URL
-    targetRevision: main
-    path: kong
-    helm:
-      valueFiles:
-        - values.yaml
-    chart: kong
-    repoURL: https://charts.konghq.com
+    - repoURL: https://github.com/YOUR_USERNAME/kong-gke-deploy.git
+      targetRevision: main  # Git branch
+      path: kong
+      helm:
+        valueFiles:
+          - values.yaml
+    - repoURL: https://charts.konghq.com
+      chart: kong
+      targetRevision: 2.18.0  # Specific Kong chart version
   destination:
     server: https://kubernetes.default.svc  # GKE cluster API
     namespace: kong
