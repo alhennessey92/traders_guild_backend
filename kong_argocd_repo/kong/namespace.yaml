@@ -1,0 +1,4 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kong # Defines the namespace where Kong will be deployed

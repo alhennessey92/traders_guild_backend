@@ -1,0 +1,23 @@
+env:
+  database: "off"
+  plugins: "bundled"
+
+plugins:
+  - name: rate-limiting
+    enabled: true
+    config:
+      second: 10
+      policy: local
+
+  - name: jwt
+    enabled: true
+    config:
+      key_claim_name: kid
+      secret_is_base64: false
+      run_on_preflight: true
+      claims_to_verify:
+        - exp
+      uri_param_names:
+        - jwt
+      cookie_names:
+        - jwt
