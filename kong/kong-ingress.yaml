@@ -4,7 +4,7 @@ metadata:
   name: kong-ingress
   namespace: kong
 spec:
-  ingressClassName: kong  # ✅ Correct way to specify Kong as the Ingress class
+  ingressClassName: kong  # Tell Kubernetes to use Kong as the Ingress controller
   rules:
     - host: api.tg-backend.com
       http:
@@ -15,8 +15,8 @@ spec:
               service:
                 name: kong-proxy
                 port:
-                  number: 80
+                  number: 443  # Use port 443 for HTTPS traffic
   tls:
     - hosts:
         - api.tg-backend.com
-      secretName: kong-tls
+      secretName: kong-tls 
