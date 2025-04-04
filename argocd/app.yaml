@@ -11,7 +11,7 @@ spec:
   source:
     chart: kong
     repoURL: https://charts.konghq.com
-    targetRevision: "latest"
+    targetRevision: "2.48.0"
     helm:
       values: |
         ingressController:

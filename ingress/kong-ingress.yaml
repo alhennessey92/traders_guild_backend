@@ -3,10 +3,8 @@ kind: Ingress
 metadata:
   name: kong-ingress
   namespace: kong
-  annotations:
-    kubernetes.io/ingress.class: "kong"
-    external-dns.alpha.kubernetes.io/hostname: "api.tg-backend.com"
 spec:
+  ingressClassName: kong  # ✅ Correct way to specify Kong as the Ingress class
   rules:
     - host: api.tg-backend.com
       http:
