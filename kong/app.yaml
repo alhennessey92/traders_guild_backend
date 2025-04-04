@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.konghq.com  # Official Kong chart repo
     chart: kong
-    targetRevision: "2.20.0"  # Specify the version you want
+    targetRevision: "2.48.0"  # Specify the version you want
     helm:
       valueFiles:
         - https://raw.githubusercontent.com/alhennessey92/traders_guild_infra_kong/main/kong/values.yaml  # Custom values.yaml from GitHub
