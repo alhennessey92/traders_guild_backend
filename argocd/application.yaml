@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong
+  namespace: argocd  # Assumes ArgoCD is in the 'argocd' namespace
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git
+    targetRevision: main
+    path: helm
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc  # Targets the GKE cluster
+    namespace: kong
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true  # Ensures the 'kong' namespace is created
