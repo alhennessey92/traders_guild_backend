@@ -14,7 +14,7 @@ spec:
       targetRevision: 2.48.0  # Updated to latest version
       helm:
         valueFiles:
-          - $kong/values.yaml
+          - $kong/kong/values.yaml
   destination:
     server: https://kubernetes.default.svc  # GKE cluster API
     namespace: kong
