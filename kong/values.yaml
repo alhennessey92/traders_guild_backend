@@ -11,3 +11,4 @@ postgresql:
   enabled: false
 env:
   database: "off"
+  anonymous_reports: "false"
