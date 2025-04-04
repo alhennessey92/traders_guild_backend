@@ -9,12 +9,17 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git
-    path: kong
-    targetRevision: main
+    chart: kong
+    repoURL: https://charts.konghq.com
+    targetRevision: "latest"
     helm:
-      valueFiles:
-        - values.yaml
+      values: |
+        ingressController:
+          enabled: true
+          installCRDs: false
+        env:
+          database: "off"
+          plugins: "bundled"
   syncPolicy:
     automated:
       prune: true

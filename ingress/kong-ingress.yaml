@@ -4,22 +4,21 @@ metadata:
   name: kong-ingress
   namespace: kong
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: kong-static-ip
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: "kong"
+    external-dns.alpha.kubernetes.io/hostname: "api.tg-backend.com"
 spec:
-  ingressClassName: kong
-  tls:
-  - hosts:
-    - argocd.tg-backend.com
-    secretName: kong-tls  # cert-manager generates this
   rules:
-  - host: argocd.tg-backend.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kong-proxy
-            port:
-              number: 80
+    - host: api.tg-backend.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kong-proxy
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - api.tg-backend.com
+      secretName: kong-tls
