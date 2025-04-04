@@ -8,13 +8,13 @@ spec:
   sources:
     - repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git
       targetRevision: main  # Git branch
-      path: kong
-      helm:
-        valueFiles:
-          - kong/values.yaml
+      ref: values
     - repoURL: https://charts.konghq.com
       chart: kong
       targetRevision: 2.48.0  # Specific Kong chart version
+      helm:
+        valueFiles:
+        - $values/kong/values.yaml
   destination:
     server: https://kubernetes.default.svc  # GKE cluster API
     namespace: kong
