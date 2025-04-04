@@ -7,14 +7,14 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git
-      targetRevision: main  # Replace with your actual default branch if not 'main'
-      ref: values 
-    - repoURL: https://charts.konghq.com
-      chart: kong
-      targetRevision: 2.48.0  # Updated to latest version
+      targetRevision: main  # Git branch
+      path: kong
       helm:
         valueFiles:
-          - $values/values.yaml
+          - values.yaml
+    - repoURL: https://charts.konghq.com
+      chart: kong
+      targetRevision: 2.48.0  # Specific Kong chart version
   destination:
     server: https://kubernetes.default.svc  # GKE cluster API
     namespace: kong
