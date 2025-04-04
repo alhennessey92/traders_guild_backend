@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     - repoURL: https://github.com/YOUR_USERNAME/kong-gke-deploy.git
-      targetRevision: main  # Git branch
+      targetRevision: master  # Git branch
       path: kong
       helm:
         valueFiles:
