@@ -11,7 +11,7 @@ spec:
       path: kong
       helm:
         valueFiles:
-          - values.yaml
+          - kong/values.yaml
     - repoURL: https://charts.konghq.com
       chart: kong
       targetRevision: 2.48.0  # Specific Kong chart version
