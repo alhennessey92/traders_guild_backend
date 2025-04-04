@@ -14,7 +14,7 @@ spec:
           - values.yaml
     - repoURL: https://charts.konghq.com
       chart: kong
-      targetRevision: 2.18.0  # Specific Kong chart version
+      targetRevision: 2.48.0  # Specific Kong chart version
   destination:
     server: https://kubernetes.default.svc  # GKE cluster API
     namespace: kong
