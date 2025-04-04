@@ -1,23 +1,56 @@
-env:
-  database: "off"
-  plugins: "bundled"
+# Disable LoadBalancer, use ClusterIP instead
+proxy:
+  enabled: true
+  type: ClusterIP
+  http:
+    enabled: true
+    servicePort: 80
+  https:
+    enabled: true
+    servicePort: 443
 
+admin:
+  enabled: true
+  type: ClusterIP
+  http:
+    enabled: true
+    servicePort: 8444
+
+# Enable Ingress Controller
+ingressController:
+  enabled: true
+  ingressClass: kong
+  installCRDs: false
+
+# Rate limiting plugin
 plugins:
-  - name: rate-limiting
-    enabled: true
-    config:
-      second: 10
-      policy: local
+  config:
+    rate-limiting:
+      second: 10  # 10 requests per second
+      minute: 1000  # 1000 requests per minute
+      policy: local  # Store rate limit counters in-memory (Redis recommended for HA)
 
-  - name: jwt
-    enabled: true
-    config:
-      key_claim_name: kid
-      secret_is_base64: false
-      run_on_preflight: true
-      claims_to_verify:
-        - exp
-      uri_param_names:
-        - jwt
-      cookie_names:
-        - jwt
+# Enable JWT Authentication
+env:
+  KONG_DATABASE: "off"  # Use DB-less mode
+  KONG_PROXY_ACCESS_LOG: "/dev/stdout"
+  KONG_ADMIN_ACCESS_LOG: "/dev/stdout"
+  KONG_PROXY_ERROR_LOG: "/dev/stderr"
+  KONG_ADMIN_ERROR_LOG: "/dev/stderr"
+  KONG_ADMIN_LISTEN: "0.0.0.0:8444 ssl"
+  KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
+  KONG_LOG_LEVEL: "info"
+  KONG_PLUGINS: "bundled, jwt, rate-limiting"
+  KONG_NGINX_WORKER_PROCESSES: "2"
+
+# TLS Configuration with Cert-Manager
+tls:
+  enabled: true
+  certManager: true  # ✅ Let Cert-Manager handle TLS certificates
+
+# Service annotations to ensure static IP in GCP
+service:
+  annotations:
+    cloud.google.com/load-balancer-type: "Internal"  # Internal LB (not used in this case)
+    networking.gke.io/load-balancer-type: "Internal"  # Internal GCP networking
+  externalTrafficPolicy: Local  # Preserve client IP

@@ -4,23 +4,20 @@ metadata:
   name: kong
   namespace: argocd
 spec:
-  destination:
-    namespace: kong
-    server: https://kubernetes.default.svc
   project: default
   source:
-    chart: kong
-    repoURL: https://charts.konghq.com
-    targetRevision: "2.48.0"
+    repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git  # ✅ Your GitHub repo
+    targetRevision: main  # ✅ Ensure this matches your branch name
+    path: kong  # ✅ The folder where values.yaml is located
     helm:
-      values: |
-        ingressController:
-          enabled: true
-          installCRDs: false
-        env:
-          database: "off"
-          plugins: "bundled"
+      valueFiles:
+        - values.yaml  # ✅ Since ArgoCD starts in 'kong/', this works
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kong
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
