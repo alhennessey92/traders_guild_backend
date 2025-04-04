@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git  # ✅ Your GitHub repo
-    targetRevision: main  # ✅ Ensure this matches your branch name
-    path: kong  # ✅ The folder where values.yaml is located
+    repoURL: https://charts.konghq.com  # Official Kong chart repo
+    chart: kong
+    targetRevision: "2.20.0"  # Specify the version you want
     helm:
       valueFiles:
-        - values.yaml  # ✅ Since ArgoCD starts in 'kong/', this works
+        - https://raw.githubusercontent.com/alhennessey92/traders_guild_infra_kong/main/kong/values.yaml  # Custom values.yaml from GitHub
   destination:
     server: https://kubernetes.default.svc
     namespace: kong
