@@ -1,56 +1,55 @@
-# Disable LoadBalancer, use ClusterIP instead
+# Kong Proxy Configuration
 proxy:
   enabled: true
-  type: ClusterIP
+  type: ClusterIP         # Ensure this is ClusterIP if you're not using LoadBalancer
   http:
     enabled: true
-    servicePort: 80
+    servicePort: 80       # Expose HTTP on port 80 for Kong Proxy
   https:
     enabled: true
-    servicePort: 443
+    servicePort: 443      # Expose HTTPS on port 443 for Kong Proxy
 
+# Kong Admin Service
 admin:
   enabled: true
-  type: ClusterIP
+  type: ClusterIP         # Expose Admin service via ClusterIP
   http:
     enabled: true
-    servicePort: 8444
+    servicePort: 8444     # Admin API accessible on port 8444
 
-# Enable Ingress Controller
+# Enable Kong Ingress Controller
 ingressController:
   enabled: true
-  ingressClass: kong
-  installCRDs: false
+  ingressClass: kong       # Use "kong" as ingress class
+  installCRDs: false       # Skip installing CRDs (since you're not using them)
 
-# Rate limiting plugin
+# Rate Limiting Configuration for the Kong Plugin
 plugins:
   config:
     rate-limiting:
-      second: 10  # 10 requests per second
-      minute: 1000  # 1000 requests per minute
-      policy: local  # Store rate limit counters in-memory (Redis recommended for HA)
+      second: 10           # 10 requests per second
+      minute: 1000         # 1000 requests per minute
+      policy: local        # In-memory rate limit (use Redis for HA)
 
-# Enable JWT Authentication
+# JWT Authentication and other environment variables for Kong
 env:
-  KONG_DATABASE: "off"  # Use DB-less mode
+  KONG_DATABASE: "off"     # Use DB-less mode for Kong
   KONG_PROXY_ACCESS_LOG: "/dev/stdout"
   KONG_ADMIN_ACCESS_LOG: "/dev/stdout"
   KONG_PROXY_ERROR_LOG: "/dev/stderr"
   KONG_ADMIN_ERROR_LOG: "/dev/stderr"
-  KONG_ADMIN_LISTEN: "0.0.0.0:8444 ssl"
-  KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
+  KONG_ADMIN_LISTEN: "0.0.0.0:8444 ssl"    # Admin API listen with SSL
+  KONG_PROXY_LISTEN: "0.0.0.0:8000, 0.0.0.0:8443 ssl"  # Proxy listen with SSL
   KONG_LOG_LEVEL: "info"
-  KONG_PLUGINS: "bundled, jwt, rate-limiting"
+  KONG_PLUGINS: "bundled, jwt, rate-limiting"  # Enable JWT and rate-limiting plugins
   KONG_NGINX_WORKER_PROCESSES: "2"
 
-# TLS Configuration with Cert-Manager
+# TLS Configuration via Cert-Manager for automatic certificate provisioning
 tls:
   enabled: true
-  certManager: true  # ✅ Let Cert-Manager handle TLS certificates
+  certManager: true  # Let Cert-Manager handle TLS certificates automatically
 
-# Service annotations to ensure static IP in GCP
+# Remove unnecessary annotations for internal LB; you're not using a LoadBalancer.
 service:
-  annotations:
-    cloud.google.com/load-balancer-type: "Internal"  # Internal LB (not used in this case)
-    networking.gke.io/load-balancer-type: "Internal"  # Internal GCP networking
-  externalTrafficPolicy: Local  # Preserve client IP
+  annotations: {}
+  externalTrafficPolicy: Local  # Ensure client IP is preserved (relevant if using nodeport or internal LB)
