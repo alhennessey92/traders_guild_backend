@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    - repoURL: https://github.com/YOUR_USERNAME/kong-gke-deploy.git
-      targetRevision: master  # Git branch
+    - repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git
+      targetRevision: main  # Git branch
       path: kong
       helm:
         valueFiles:
