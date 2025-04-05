@@ -41,7 +41,8 @@ kong:
     admin_listen: "0.0.0.0:8001"
     proxy_listen: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
   ingressController:
-    enabled: false  # Enable this later if you want Kong as an Ingress Controller
+    enabled: true
+    installCRDs: true  # Enable this later if you want Kong as an Ingress Controller
 
 namespace: kong
 
