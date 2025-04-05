@@ -12,7 +12,7 @@ kong:
       enabled: true
       servicePort: 8000
       containerPort: 8000
-    additionalPorts:
+    extraPorts:
     - name: http-challenge
       port: 80
       targetPort: 8000
