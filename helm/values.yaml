@@ -5,7 +5,7 @@ kong:
   proxy:
     enabled: true
     type: LoadBalancer
-    loadBalancerIP: <YOUR_STATIC_IP>
+    loadBalancerIP: 34.70.170.151
     annotations:
       "networking.gke.io/load-balancer-type": "External"
     http:
