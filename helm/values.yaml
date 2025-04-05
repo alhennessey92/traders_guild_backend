@@ -2,18 +2,11 @@ kong:
   image:
     repository: kong
     tag: "latest"
-  admin:
-    enabled: true
-    http:
-      enabled: true
-      servicePort: 8001
-      containerPort: 8001
   proxy:
     enabled: true
     type: LoadBalancer
-    loadBalancerIP: 34.70.170.151  # Your GKE static IP
+    loadBalancerIP: <YOUR_STATIC_IP>
     annotations:
-      # Optional: Ensure GKE uses the static IP
       "networking.gke.io/load-balancer-type": "External"
     http:
       enabled: true
@@ -23,14 +16,77 @@ kong:
       enabled: true
       servicePort: 8443
       containerPort: 8443
+      # Add TLS secret reference (Cert-Manager will populate this)
+      parameters:
+        - "ssl"
+      secretName: tg-backend-tls  # Name of the secret Cert-Manager will create
+  admin:
+    enabled: true
+    type: NodePort  # Keep as NodePort since you’re using port forwarding
+    http:
+      enabled: true
+      servicePort: 8001
+      containerPort: 8001
+    tls:
+      enabled: false
   env:
-    database: "off"  # DB-less mode for simplicity
+    database: "off"
     proxy_access_log: "/dev/stdout"
     admin_access_log: "/dev/stdout"
     admin_listen: "0.0.0.0:8001"
     proxy_listen: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
   ingressController:
-    enabled: false  # Disable for now; enable later if needed
+    enabled: false  # Enable this later if you want Kong as an Ingress Controller
 
-# Namespace configuration
 namespace: kong
+
+# Add Cert-Manager certificate resource
+certificate:
+  enabled: true
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  secretName: tg-backend-tls  # Must match proxy.tls.secretName
+  dnsNames:
+    - tg-backend.com
+
+
+
+
+
+# kong:
+#   image:
+#     repository: kong
+#     tag: "latest"
+#   admin:
+#     enabled: true
+#     http:
+#       enabled: true
+#       servicePort: 8001
+#       containerPort: 8001
+#   proxy:
+#     enabled: true
+#     type: LoadBalancer
+#     loadBalancerIP: 34.70.170.151  # Your GKE static IP
+#     annotations:
+#       # Optional: Ensure GKE uses the static IP
+#       "networking.gke.io/load-balancer-type": "External"
+#     http:
+#       enabled: true
+#       servicePort: 8000
+#       containerPort: 8000
+#     tls:
+#       enabled: true
+#       servicePort: 8443
+#       containerPort: 8443
+#   env:
+#     database: "off"  # DB-less mode for simplicity
+#     proxy_access_log: "/dev/stdout"
+#     admin_access_log: "/dev/stdout"
+#     admin_listen: "0.0.0.0:8001"
+#     proxy_listen: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
+#   ingressController:
+#     enabled: false  # Disable for now; enable later if needed
+
+# # Namespace configuration
+# namespace: kong
