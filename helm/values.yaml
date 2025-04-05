@@ -12,6 +12,11 @@ kong:
       enabled: true
       servicePort: 8000
       containerPort: 8000
+    additionalPorts:
+    - name: http-challenge
+      port: 80
+      targetPort: 8000
+      protocol: TCP
     tls:
       enabled: true
       servicePort: 8443
