@@ -40,15 +40,15 @@ kong:
 
 namespace: kong
 
-# Add Cert-Manager certificate resource
-certificate:
-  enabled: true
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  secretName: tg-backend-tls  # Must match proxy.tls.secretName
-  dnsNames:
-    - tg-backend.com
+# # Add Cert-Manager certificate resource
+# certificate:
+#   enabled: true
+#   issuerRef:
+#     name: letsencrypt-prod
+#     kind: ClusterIssuer
+#   secretName: tg-backend-tls  # Must match proxy.tls.secretName
+#   dnsNames:
+#     - tg-backend.com
 
 
 

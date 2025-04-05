@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/alhennessey92/traders_guild_infra_kong.git
     targetRevision: main
-    path: helm
+    path: . #was helm
     helm:
       valueFiles:
         - values.yaml

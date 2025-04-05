@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tg-backend-tls
+  namespace: kong
+spec:
+  secretName: tg-backend-tls  # Matches the secretName in values.yaml
+  dnsNames:
+    - tg-backend.com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
