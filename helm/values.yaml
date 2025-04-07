@@ -13,10 +13,10 @@ kong:
       servicePort: 8000
       containerPort: 8000
       additionalServicePorts:
-      - name: http-challenge
-        port: 80
-        targetPort: 8000
-        protocol: TCP
+        - name: http-challenge
+          port: 80
+          targetPort: 8000
+          protocol: TCP
     tls:
       enabled: true
       servicePort: 8443
@@ -40,8 +40,6 @@ kong:
     admin_access_log: "/dev/stdout"
     admin_listen: "0.0.0.0:8001"
     proxy_listen: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
-    # ssl_cert: "/usr/local/kong/ssl/tls.crt"      # Kong’s default path
-    # ssl_cert_key: "/usr/local/kong/ssl/tls.key"  # Kong’s default path
   
   ingressController:
     enabled: true
