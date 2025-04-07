@@ -41,7 +41,7 @@ kong:
     admin_listen: "0.0.0.0:8001"
     proxy_listen: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
     ssl_cert: "/etc/kong/ssl/tls.crt"      # Point to mounted cert
-    ssl_cert_key: "/dev/kong/ssl/tls.key"
+    ssl_cert_key: "/etc/kong/ssl/tls.key"
   extraVolumes:
   - name: tls-secret
     secret:
