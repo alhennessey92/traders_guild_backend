@@ -12,11 +12,7 @@ kong:
       enabled: true
       servicePort: 8000
       containerPort: 8000
-      additionalServicePorts:
-        - name: http-challenge
-          port: 80
-          targetPort: 8000
-          protocol: TCP
+      
     tls:
       enabled: true
       servicePort: 8443
@@ -25,6 +21,11 @@ kong:
       parameters:
         - "ssl"
       secretName: tg-backend-tls  # Name of the secret Cert-Manager will create
+    additionalPorts:
+      - name: http-challenge
+        port: 80
+        targetPort: 8000
+        protocol: TCP
   admin:
     enabled: true
     type: NodePort  # Keep as NodePort since you’re using port forwarding
