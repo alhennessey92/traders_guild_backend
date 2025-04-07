@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kong-ingress
+  annotations:
+    konghq.com/ingress.class: kong
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    konghq.com/enable-access-log: "true"
+spec:
+  rules:
+  - host: tg-backend.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kong-kong-proxy
+            port:
+              number: 8000
