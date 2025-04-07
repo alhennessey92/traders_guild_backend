@@ -8,6 +8,12 @@ kong:
     loadBalancerIP: 34.70.170.151
     annotations:
       "networking.gke.io/load-balancer-type": "External"
+    service:
+      additionalPorts:
+        - name: http-challenge
+          port: 80
+          targetPort: 8000
+          protocol: TCP
     http:
       enabled: true
       servicePort: 8000
@@ -21,12 +27,7 @@ kong:
       parameters:
         - "ssl"
       secretName: tg-backend-tls  # Name of the secret Cert-Manager will create
-    service:
-      additionalPorts:
-        - name: http-challenge
-          port: 80
-          targetPort: 8000
-          protocol: TCP
+    
   admin:
     enabled: true
     type: NodePort  # Keep as NodePort since you’re using port forwarding
