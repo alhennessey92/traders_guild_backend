@@ -40,16 +40,9 @@ kong:
     admin_access_log: "/dev/stdout"
     admin_listen: "0.0.0.0:8001"
     proxy_listen: "0.0.0.0:8000, 0.0.0.0:8443 ssl"
-    ssl_cert: "/etc/kong/ssl/tls.crt"      # Point to mounted cert
-    ssl_cert_key: "/etc/kong/ssl/tls.key"
-  extraVolumes:
-  - name: tls-secret
-    secret:
-      secretName: tg-backend-tls
-  extraVolumeMounts:
-  - name: tls-secret
-    mountPath: "/etc/kong/ssl"
-    readOnly: true
+    ssl_cert: "/usr/local/kong/ssl/tls.crt"      # Kong’s default path
+    ssl_cert_key: "/usr/local/kong/ssl/tls.key"  # Kong’s default path
+  
   ingressController:
     enabled: true
     installCRDs: true  # Enable this later if you want Kong as an Ingress Controller
