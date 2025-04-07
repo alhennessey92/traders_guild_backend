@@ -30,12 +30,12 @@ kong:
 
     externalIPs: []
 
-  service:
-    additionalPorts:
-      - name: http-challenge
-        port: 80
-        targetPort: 8000
-        protocol: TCP
+  # service:
+  #   additionalPorts:
+  #     - name: http-challenge
+  #       port: 80
+  #       targetPort: 8000
+  #       protocol: TCP
 
     
   admin:
