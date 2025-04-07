@@ -7,31 +7,36 @@ kong:
     type: LoadBalancer
     loadBalancerIP: 34.70.170.151
     annotations:
-      "networking.gke.io/load-balancer-type": "External"
-    service:
-      additionalPorts:
-        - name: http-challenge
-          port: 80
-          targetPort: 8000
-          protocol: TCP
+      networking.gke.io/load-balancer-type: "External"
+
     http:
       enabled: true
-      servicePort: 8000
+      servicePort: 80
       containerPort: 8000
-      
+      parameters: []
+
+    tls:
+      enabled: true
+      servicePort: 443
+      containerPort: 8443
+      parameters:
+        - http2
+      secretName: tg-backend-tls
+
+    stream: {}
+
+    ingress:
+      enabled: false
+
+    externalIPs: []
+
+  service:
     additionalPorts:
       - name: http-challenge
         port: 80
         targetPort: 8000
         protocol: TCP
-    tls:
-      enabled: true
-      servicePort: 8443
-      containerPort: 8443
-      # Add TLS secret reference (Cert-Manager will populate this)
-      parameters:
-        - "ssl"
-      secretName: tg-backend-tls  # Name of the secret Cert-Manager will create
+
     
   admin:
     enabled: true
@@ -65,7 +70,33 @@ namespace: kong
 #   dnsNames:
 #     - tg-backend.com
 
-
+  # proxy:
+  #   enabled: true
+  #   type: LoadBalancer
+  #   loadBalancerIP: 34.70.170.151
+  #   annotations:
+  #     "networking.gke.io/load-balancer-type": "External"
+    
+  #   service:
+  #     additionalPorts:
+  #       - name: http-challenge
+  #         port: 80
+  #         targetPort: 8000
+  #         protocol: TCP
+  #   http:
+  #     enabled: true
+  #     servicePort: 80         # External port (publicly accessible)
+  #     containerPort: 8000     # Internal port Kong listens on
+  #     parameters: []
+  #   tls:
+  #     enabled: true
+  #     servicePort: 443        # External TLS port
+  #     containerPort: 8443     # Internal TLS port in Kong
+      
+  #     # Add TLS secret reference (Cert-Manager will populate this)
+  #     parameters:
+  #     - http2
+  #     secretName: tg-backend-tls  # Name of the secret Cert-Manager will create
 
 
 
