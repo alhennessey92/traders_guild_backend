@@ -4,5 +4,5 @@ description: A Helm chart to deploy Kong on GKE via ArgoCD
 version: 0.1.0
 dependencies:
   - name: kong
-    version: "2.13.0"  # Use a specific version of the official Kong chart
+    version: "2.48.0"  # Use a specific version of the official Kong chart
     repository: "https://charts.konghq.com"
