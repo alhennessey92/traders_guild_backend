@@ -5,6 +5,5 @@ metadata:
   namespace: kong
 plugin: rate-limiting
 config:
-  second: 5
-  minute: 100
+  minute: 5
   policy: local

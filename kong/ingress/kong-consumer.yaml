@@ -5,13 +5,12 @@ metadata:
   namespace: kong
 username: test-user
 credentials:
-  - test-user-key
-
+  - test-user-apikey
 ---
 apiVersion: configuration.konghq.com/v1
 kind: KongCredential
 metadata:
-  name: test-user-key
+  name: test-user-apikey
   namespace: kong
 consumerRef: test-user
 type: key-auth
