@@ -15,8 +15,8 @@ admin:
   enabled: true
   type: ClusterIP
 
-plugins:
-  configMaps:
-    - kong-plugin-key-auth
-    - kong-plugin-rate-limit
+# plugins:
+#   configMaps:
+#     - kong-plugin-key-auth
+#     - kong-plugin-rate-limit
 
