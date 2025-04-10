@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: 'https://charts.konghq.com'
+    chart: kong
+    targetRevision: 2.48.0
+    helm:
+      valueFiles:
+      - $values/charts/values.yaml
+  - repoURL: 'https://github.com/alhennessey92/traders_guild_main_build.git'
+    targetRevision: HEAD
+    ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kong
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

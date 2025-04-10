@@ -15,6 +15,9 @@ admin:
   enabled: true
   type: ClusterIP
 
+env:
+  database: "off"
+
 # plugins:
 #   configMaps:
 #     - kong-plugin-key-auth
