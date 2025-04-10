@@ -19,3 +19,4 @@ plugins:
   configMaps:
     - kong-plugin-key-auth
     - kong-plugin-rate-limit
+
