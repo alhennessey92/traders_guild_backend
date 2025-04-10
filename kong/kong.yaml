@@ -11,7 +11,7 @@ spec:
     targetRevision: 2.48.0
     helm:
       valueFiles:
-      - $values/charts/values.yaml
+      - $values/kong/charts/values.yaml
   - repoURL: 'https://github.com/alhennessey92/traders_guild_main_build.git'
     targetRevision: HEAD
     ref: values
