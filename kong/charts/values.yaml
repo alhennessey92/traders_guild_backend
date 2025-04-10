@@ -1,0 +1,21 @@
+ingressController:
+  enabled: true
+  installCRDs: true
+
+proxy:
+  type: NodePort
+  http:
+    enabled: true
+    servicePort: 80
+    containerPort: 8000
+  tls:
+    enabled: false
+
+admin:
+  enabled: true
+  type: ClusterIP
+
+plugins:
+  configMaps:
+    - kong-plugin-key-auth
+    - kong-plugin-rate-limit
