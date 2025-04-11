@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tg-ingress-api
-  namespace: fastapi-ns
+  namespace: kong
 spec:
   selector:
     app: tg-ingress-api
