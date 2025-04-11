@@ -19,4 +19,4 @@ spec:
              service:
                name: tg-ingress-api   # Name of your K8s Service
                port:
-                 number: 3000    # Port exposed by your Service
+                 number: 80    # Port exposed by your Service
