@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tg-ingress-api
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tg-ingress-api
+  template:
+    metadata:
+      labels:
+        app: tg-ingress-api
+    spec:
+      containers:
+        - name: fastapi
+          image: ghcr.io/alhennessey92/fastapi-test:latest
+          ports:
+            - containerPort: 8000

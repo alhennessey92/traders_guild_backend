@@ -1,11 +1,11 @@
-apiVersion: configuration.konghq.com/v1
-kind: KongConsumer
-metadata:
-  name: test-user
-  namespace: kong
-username: test-user
-credentials:
-  - key-auth
-config:
-  key-auth:
-    - key: my-secret-api-key
+# apiVersion: configuration.konghq.com/v1
+# kind: KongConsumer
+# metadata:
+#  name: <consumer-name>             # Unique name for this consumer
+#  namespace: <your-namespace>
+#  annotations:
+#   kubernetes.io/ingress.class: kong
+# username: <username>                # Username for this consumer
+# custom_id: <custom-id>              # Unique ID for this consumer
+# credentials:
+#  - <secret-name>                   # Name of the Secret containing the API key
