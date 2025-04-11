@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/alhennessey92/traders_guild_main_build.git'
     targetRevision: HEAD
-    path: fastapi
+    path: fastapi/k8s
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kong
