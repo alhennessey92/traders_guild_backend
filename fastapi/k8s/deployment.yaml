@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tg-ingress-api
-  namespace: kong
+  namespace: fastapi-ns
 spec:
   replicas: 1
   selector:
