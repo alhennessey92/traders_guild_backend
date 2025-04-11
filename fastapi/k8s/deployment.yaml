@@ -18,3 +18,5 @@ spec:
           image: ghcr.io/alhennessey92/fastapi-test:latest
           ports:
             - containerPort: 8000
+      imagePullSecrets:
+        - name: ghcr-secret
