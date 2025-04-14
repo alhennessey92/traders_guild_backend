@@ -9,7 +9,10 @@ proxy:
     servicePort: 80
     containerPort: 8000
   tls:
-    enabled: false
+    enabled: true
+    existingSecret: kong-tls-cert
+    servicePort: 443
+    containerPort: 8443
 
 admin:
   enabled: true

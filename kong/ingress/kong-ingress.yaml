@@ -10,6 +10,10 @@ metadata:
    konghq.com/methods: "GET, POST"  
 spec:
  ingressClassName: kong
+ tls:
+    - hosts:
+        - localhost   # Or your local domain if you're using one like dev.tgbackend.local
+      secretName: kong-tls-cert  # Must match the name of the secret you created
  rules:
    - http:
        paths:
