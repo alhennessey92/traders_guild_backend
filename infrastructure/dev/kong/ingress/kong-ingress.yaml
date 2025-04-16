@@ -13,7 +13,7 @@ spec:
  tls:
     - hosts:
         - localhost.dev   # Or your local domain if you're using one like dev.tgbackend.local
-      secretName: kong-local-cert-tls  # Must match the name of the secret you created
+      secretName: tg-ingress-cert  # Must match the name of the secret you created
  rules:
    - http:
        paths:
