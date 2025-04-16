@@ -1,0 +1,11 @@
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.der
+*.jks
+*.pfx
+secrets/
+secret*.yaml
+*.secret.yaml
