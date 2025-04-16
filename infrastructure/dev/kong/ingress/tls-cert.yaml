@@ -4,7 +4,7 @@ metadata:
   name: tg-ingress-cert
   namespace: kong  # Adjust this if necessary to match your actual namespace
 spec:
-  secretName: tg-ingress-cert  # Name of the secret that will contain the TLS cert
+  secretName: tg-ingress-cert-tls  # Name of the secret that will contain the TLS cert
   issuerRef:
     name: selfsigned-issuer  # Reference to the Issuer
     kind: Issuer
