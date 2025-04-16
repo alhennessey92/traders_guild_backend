@@ -17,5 +17,10 @@ COMMANDS
   --password <your-password> -- login to argocd
 
 
+      FASTAPI
+      - build new image -  docker build -t ghcr.io/alhennessey92/fastapi-test:latest .
+      - push new image
+
+
 
 
