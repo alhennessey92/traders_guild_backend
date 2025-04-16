@@ -2,12 +2,16 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: tg-ingress-cert
-  namespace: kong  # Adjust this if necessary to match your actual namespace
+  namespace: kong
 spec:
-  secretName: tg-ingress-cert-tls  # Name of the secret that will contain the TLS cert
+  secretName: tg-ingress-cert-tls
   issuerRef:
-    name: selfsigned-issuer  # Reference to the Issuer
-    kind: Issuer
-  commonName: localhost.dev  # Replace this with the domain you're using
+    name: ca-cluster-issuer
+    kind: ClusterIssuer
+  commonName: localhost.dev
   dnsNames:
-    - localhost.dev  # Ensure this matches your domain
+    - localhost.dev
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
