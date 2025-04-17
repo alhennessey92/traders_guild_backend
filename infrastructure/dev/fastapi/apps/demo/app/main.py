@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/ping")
 async def ping():
-    return {"message": "pong, new folder!"}
+    return {"message": "pong, FINAL PONG!"}
