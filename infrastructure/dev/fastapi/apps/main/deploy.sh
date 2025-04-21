@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set repo variables
-REPO="ghcr.io/alhennessey92/tg_fastapi_main"
+REPO="ghcr.io/alhennessey92/tg-fastapi-main"
 DEPLOYMENT_FILE="k8s/deployment.yaml"  # Adjust if your deployment file lives elsewhere
 
 # Generate a unique tag using timestamp
