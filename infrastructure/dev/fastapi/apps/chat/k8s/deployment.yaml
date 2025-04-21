@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: fastapi-chat
-          image: ghcr.io/alhennessey92/tg-fastapi-chat:1744913644
+          image: ghcr.io/alhennessey92/tg-fastapi-chat:1745272864
           ports:
             - containerPort: 8000
           imagePullPolicy: Always
