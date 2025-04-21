@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tg-fastapi-test
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tg-fastapi-test
+  template:
+    metadata:
+      labels:
+        app: tg-fastapi-test
+    spec:
+      containers:
+        - name: fastapi-test
+          image: ghcr.io/alhennessey92/tg-fastapi-test:1744913644
+          ports:
+            - containerPort: 8000
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-secret

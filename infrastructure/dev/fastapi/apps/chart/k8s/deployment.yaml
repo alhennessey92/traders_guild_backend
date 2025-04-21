@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tg-fastapi-chart
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tg-fastapi-chart
+  template:
+    metadata:
+      labels:
+        app: tg-fastapi-chart
+    spec:
+      containers:
+        - name: fastapi-chart
+          image: ghcr.io/alhennessey92/tg-fastapi-chart:1744913644
+          ports:
+            - containerPort: 8000
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-secret

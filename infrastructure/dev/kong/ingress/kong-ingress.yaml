@@ -17,10 +17,32 @@ spec:
  rules:
    - http:
        paths:
-         - path: /ping
+         - path: /v1/chart
            pathType: Prefix
            backend:
              service:
-               name: tg-ingress-api   # Name of your K8s Service
+               name: tg-fastapi-chart   # Name of your K8s Service
                port:
                  number: 80    # Port exposed by your Service
+         - path: /v1/chat
+           pathType: Prefix
+           backend:
+             service:
+               name: tg-fastapi-chat   # Name of your K8s Service
+               port:
+                 number: 80    # Port exposed by your Service
+         - path: /v1/main
+           pathType: Prefix
+           backend:
+             service:
+               name: tg-fastapi-main   # Name of your K8s Service
+               port:
+                 number: 80    # Port exposed by your Service
+         - path: /v1/test
+           pathType: Prefix
+           backend:
+             service:
+               name: tg-fastapi-test   # Name of your K8s Service
+               port:
+                 number: 80    # Port exposed by your Service
+                
