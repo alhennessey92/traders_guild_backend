@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: fastapi-main
-          image: ghcr.io/alhennessey92/tg-fastapi-main:1745273163
+          image: ghcr.io/alhennessey92/tg-fastapi-main:1745357306
           ports:
             - containerPort: 8000
           imagePullPolicy: Always

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: fastapi-chart
-          image: ghcr.io/alhennessey92/tg-fastapi-chart:1745272820
+          image: ghcr.io/alhennessey92/tg-fastapi-chart:1745357387
           ports:
             - containerPort: 8000
           imagePullPolicy: Always
