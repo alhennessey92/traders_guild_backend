@@ -7,6 +7,7 @@ metadata:
    konghq.com/strip-path: "false"
    konghq.com/plugins: tg-auth, tg-rate-limit #     Plugin names referenced in KongPlugin resources
    kubernetes.io/ingress.class: kong
+   konghq.com/protocols: "http,https"
   #  konghq.com/methods: "GET, POST"  
 spec:
  ingressClassName: kong
@@ -24,8 +25,8 @@ spec:
                name: tg-fastapi-chart   # Name of your K8s Service
                port:
                  number: 80    # Port exposed by your Service
-         - path: /v1/chat
-           pathType: Prefix
+         - path: /v1/chat/ws
+           pathType: ImplementationSpecific
            backend:
              service:
                name: tg-fastapi-chat   # Name of your K8s Service
