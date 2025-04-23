@@ -7,8 +7,8 @@ metadata:
    konghq.com/strip-path: "false"
    konghq.com/plugins: tg-auth, tg-rate-limit #     Plugin names referenced in KongPlugin resources
    kubernetes.io/ingress.class: kong
-  #  konghq.com/protocols: "http,https"
    konghq.com/methods: "GET, POST"  
+   konghq.com/protocols: "http,https"
 spec:
  ingressClassName: kong
  tls:
