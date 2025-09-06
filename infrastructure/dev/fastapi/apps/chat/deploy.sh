@@ -18,4 +18,4 @@ sed -i '' "s|image: $REPO:.*|image: $REPO:$TAG|" $DEPLOYMENT_FILE
 
 
 
-echo "✅ Done! New image $TAG pushed and deployment.yaml updated. ArgoCD will sync this automatically."
+echo "✅ Done!al New image $TAG pushed and deployment.yaml updated. ArgoCD will sync this automatically."
