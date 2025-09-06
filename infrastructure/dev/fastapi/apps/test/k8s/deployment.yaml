@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: fastapi-test
-          image: ghcr.io/alhennessey92/tg-fastapi-test:1745357249
+          image: ghcr.io/alhennessey92/tg-fastapi-test:1757195250
           ports:
             - containerPort: 8000
           imagePullPolicy: Always
