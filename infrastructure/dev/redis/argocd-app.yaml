@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/alhennessey92/traders_guild_main_build.git'
+    targetRevision: HEAD
+    path: 'infrastructure/dev/redis'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: redis-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
