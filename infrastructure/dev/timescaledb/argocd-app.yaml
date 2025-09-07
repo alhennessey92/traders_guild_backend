@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/alhennessey92/traders_guild_main_build.git'
     targetRevision: main
-    path: dev/timescaledb
+    path: infrastructure/dev/timescaledb
     helm:
       valueFiles:
         - values.yaml
