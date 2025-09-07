@@ -40,7 +40,7 @@ spec:
                port:
                  number: 80    # Port exposed by your Service
          - path: /v1/test
-           pathType: ImplementationSpecific
+           pathType: Prefix
            backend:
              service:
                name: tg-fastapi-test   # Name of your K8s Service
