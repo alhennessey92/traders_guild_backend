@@ -5,8 +5,8 @@ image:
   tag: 2.16.2-pg16
   pullPolicy: IfNotPresent
 
+existingSecret: timescaledb-credentials
 postgresUser: tsdb_user
-postgresPassword: tsdb_pass
 postgresDatabase: tg_app
 
 persistence:
