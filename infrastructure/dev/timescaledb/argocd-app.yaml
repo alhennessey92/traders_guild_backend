@@ -1,3 +1,4 @@
+# timescaledb-argocd-application.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,15 +7,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/alhennessey92/traders_guild_main_build.git'
-    targetRevision: main
-    path: infrastructure/dev/timescaledb
-    helm:
-      valueFiles:
-        - values.yaml
+    repoURL: 'https://github.com/alhennessey92/traders_guild_main_build.git'   # Your Git repo
+    targetRevision: HEAD
+    path: infrastructure/dev/timescaledb   # Folder in repo containing above YAMLs
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: kong
+    namespace: timescale
   syncPolicy:
     automated:
       prune: true
