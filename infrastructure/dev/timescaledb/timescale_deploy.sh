@@ -24,4 +24,6 @@ kubectl apply -f timescaledb-service.yaml
 # Apply ArgoCD Application
 kubectl apply -f argocd-app.yaml
 
+# Need to deplot schema, or find out once the db has been deployed
+
 echo "✅ TimescaleDB deployment applied successfully!"
