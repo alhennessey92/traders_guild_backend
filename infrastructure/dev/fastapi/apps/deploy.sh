@@ -4,9 +4,7 @@ set -e
 # List of deploy scripts to run (adjust paths if needed)
 DEPLOY_SCRIPTS=(
   "chart/deploy.sh"
-  "chat/deploy.sh"
   "main/deploy.sh"
-  "test/deploy.sh"
   # Add more apps here
 )
 

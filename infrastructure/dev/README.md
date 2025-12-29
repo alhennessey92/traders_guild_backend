@@ -12,9 +12,7 @@ COMMANDS
         - argocd repo add https://github.com/your-username/your-repo.git \
   --username your-username \
   --password your-token-or-password -- add repo to argocd
-        - argocd login localhost:8080 \
-  --username admin \
-  --password <your-password> -- login to argocd
+        - argocd login localhost:8080 --username admin --password <your-password> -- login to argocd
 
 
       FASTAPI

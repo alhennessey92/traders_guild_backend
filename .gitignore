@@ -9,3 +9,6 @@
 secrets/
 secret*.yaml
 *.secret.yaml
+auth-service-complete/
+auth-starter/
+centralized-migrations/
